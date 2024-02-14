@@ -37,18 +37,18 @@ const createListExports = (names) => {
     ' }'
 }
 
-const addExports = (lines, ids, names) => {
-  const listExports = createListExports(names)
-  lines.push(
-    'export const modules = [' +
-      ids.map((_, modIndex) => listExports(modIndex)).join(', ') +
-      '];'
-  )
-  lines.push('export const paths = ' + JSON.stringify(ids) + ';')
-  lines.push(
-    'export const entries = paths.map((path, i) => [path, modules[i]]);'
-  )
-}
+// const addExports = (lines, ids, names) => {
+//   const listExports = createListExports(names)
+//   lines.push(
+//     'export const modules = [' +
+//       ids.map((_, modIndex) => listExports(modIndex)).join(', ') +
+//       '];'
+//   )
+//   lines.push('export const paths = ' + JSON.stringify(ids) + ';')
+//   lines.push(
+//     'export const entries = paths.map((path, i) => [path, modules[i]]);'
+//   )
+// }
 
 const parseImportPath = (path, separator) => {
   const [glob, namesStr] = path.split(separator)
@@ -58,7 +58,7 @@ const parseImportPath = (path, separator) => {
 const generateCode = (ids, names) => {
   const lines = []
   addImports(lines, ids, names)
-  addExports(lines, ids, names)
+  // addExports(lines, ids, names)
   return lines.join('\n')
 }
 
